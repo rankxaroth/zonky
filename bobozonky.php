@@ -62,6 +62,12 @@
         $jake_pujcky = '';
     }
 
+    if ( isset($_REQUEST['prob_only'])) {
+        $prob_only = TRUE;
+    } else {
+        $prob_only = FALSE;
+    }
+
     // Zjistime, kolik jsme do Zonky nalili
     $stmt2 = $db->query("SELECT sum(castka) as vlozeno FROM pohyb WHERE typ = 'Nabití vaší peněženky'" );
         
@@ -671,27 +677,29 @@
             $text_otazek = '';
         }
 
-        echo '<TR>'.
-             '<TD ALIGN="right">'.$radek.'</TD>'.
-            '<TD nowrap onMouseMove='."'".'showTip("<table border=1 cellspacing=0 cellpadding=0>'.$text_otazek.'</TABLE>", this, event);'."'".' onMouseOut='."'".'endTip();'."'".'><font color="'.$status_color.'">'.
-             ( $status_color != 'green' ? '<b>' : '' ).$row['stav'].
-             ( $status_color != 'green' ? '</b>' : '' ).
-             '</font></TD>'.
-             '<TD><A HREF="'.$odkaz.'" TARGET="_blank">'.$row['nazev'].'</A></TD>'.
-             '<TD ALIGN="right">'.$row['datum_zafinancovani'].'</TD>'.
-             '<TD ALIGN="right">'.number_format($row['vyse_investice'],2,'.',' ').' Kč </TD>'.
-             '<TD nowrap onMouseMove='."'".'showTip("<table border=1 cellspacing=0 cellpadding=0>'.$platby.'</TABLE>", this, event);'."'".' onMouseOut='."'".'endTip();'."'".' ALIGN="right">'.$row['puv_poc_spl'].' <font size="1">('.$pocet_plateb.')</font></TD>'.
-             '<TD ALIGN="right">'.$row['urok_procenta'].' % </TD>'.
-             '<TD ALIGN="right">'.number_format($row['investovano_mnou'],2,'.',' ').' Kč </TD>'.
-             '<TD ALIGN="right">'.$row['vyse_splatky'].' Kč </TD>'.
-             '<TD ALIGN="right">'.number_format($row['vratilo_se_mi'],2,'.',' ').' Kč </TD>'.
-             '<TD ALIGN="right">'.$row['urok_ocekavany'].' Kč </TD>'.
-             '<TD ALIGN="right">'.$row['urok_zaplaceny'].' Kč </TD>'.
-             '<TD ALIGN="right">'.$row['inv_popl_proc'].' % </TD>'.
-             '<TD ALIGN="right">'.number_format($poplatek_zonky,2,'.',' ').' Kč <font size="1">'.$pocet_dni.'</font></TD>'.
-             '<TD ALIGN="right">'.$row['dalsi_platba'].'</TD>'.
-             '<TD ALIGN="right">'.( $mozna_ztrata == 0 ? '' : number_format($mozna_ztrata,2,'.',' ').' Kč ').'</TD>'.
-             '</TD>';
+        if ( !$prob_only || ( $prob_only && ( $row['stav'] == 'po splatnosti') || $row['stav'] == 'zesplatněná' ) ) { 
+            echo '<TR>'.
+                '<TD ALIGN="right">'.$radek.'</TD>'.
+                '<TD nowrap onMouseMove='."'".'showTip("<table border=1 cellspacing=0 cellpadding=0>'.$text_otazek.'</TABLE>", this, event);'."'".' onMouseOut='."'".'endTip();'."'".'><font color="'.$status_color.'">'.
+                ( $status_color != 'green' ? '<b>' : '' ).$row['stav'].
+                ( $status_color != 'green' ? '</b>' : '' ).
+                '</font></TD>'.
+                '<TD><A HREF="'.$odkaz.'" TARGET="_blank">'.$row['nazev'].'</A></TD>'.
+                '<TD ALIGN="right">'.$row['datum_zafinancovani'].'</TD>'.
+                '<TD ALIGN="right">'.number_format($row['vyse_investice'],2,'.',' ').' Kč </TD>'.
+                '<TD nowrap onMouseMove='."'".'showTip("<table border=1 cellspacing=0 cellpadding=0>'.$platby.'</TABLE>", this, event);'."'".' onMouseOut='."'".'endTip();'."'".' ALIGN="right">'.$row['puv_poc_spl'].' <font size="1">('.$pocet_plateb.')</font></TD>'.
+                '<TD ALIGN="right">'.$row['urok_procenta'].' % </TD>'.
+                '<TD ALIGN="right">'.number_format($row['investovano_mnou'],2,'.',' ').' Kč </TD>'.
+                '<TD ALIGN="right">'.$row['vyse_splatky'].' Kč </TD>'.
+                '<TD ALIGN="right">'.number_format($row['vratilo_se_mi'],2,'.',' ').' Kč </TD>'.
+                '<TD ALIGN="right">'.$row['urok_ocekavany'].' Kč </TD>'.
+                '<TD ALIGN="right">'.$row['urok_zaplaceny'].' Kč </TD>'.
+                '<TD ALIGN="right">'.$row['inv_popl_proc'].' % </TD>'.
+                '<TD ALIGN="right">'.number_format($poplatek_zonky,2,'.',' ').' Kč <font size="1">'.$pocet_dni.'</font></TD>'.
+                '<TD ALIGN="right">'.$row['dalsi_platba'].'</TD>'.
+                '<TD ALIGN="right">'.( $mozna_ztrata == 0 ? '' : number_format($mozna_ztrata,2,'.',' ').' Kč ').'</TD>'.
+                '</TD>';
+        }
         flush();
 
     }
