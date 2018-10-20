@@ -4,6 +4,8 @@
     require_once('jpgraph/src/jpgraph_line.php');
     require_once('jpgraph/src/jpgraph_bar.php');
 
+    require_once('define_me.php');
+
     date_default_timezone_set('Europe/Prague');
     setlocale(LC_COLLATE,"cz_CZ.UTF-8");
 
@@ -45,10 +47,7 @@
         return ($results);
     }
     
-    $db = new PDO(
-        'mysql:host=localhost;dbname=rankxarothwz2479;charset=utf8mb4',
-        'rankxarothwz2479',
-        'Lf191174');
+    require_once('define_db.php');
 
     if ( isset($_REQUEST['investor'])) {
         $investor = $_REQUEST['investor'];
@@ -399,7 +398,7 @@
 
     curl_setopt($ch, CURLOPT_POST, TRUE);
 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=zdenek.habala@ais.cz&password=lf191174&grant_type=password&scope=SCOPE_APP_WEB");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&$y&grant_type=password&scope=SCOPE_APP_WEB");
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Content-Type: application/x-www-form-urlencoded",

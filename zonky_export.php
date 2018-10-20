@@ -11,6 +11,8 @@
 
     $location = '';
 
+    require_once('define_me.php');
+
     date_default_timezone_set('Europe/Prague');
     setlocale(LC_COLLATE,"cz_CZ.UTF-8");
 
@@ -55,7 +57,7 @@
 
         curl_setopt($ch, CURLOPT_POST, TRUE);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "username=zdenek.habala@ais.cz&password=lf191174&grant_type=password&scope=".$scope);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&password=$y&grant_type=password&scope=".$scope);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Content-Type: application/x-www-form-urlencoded",
@@ -132,7 +134,7 @@
             curl_setopt($ch, CURLOPT_POST, TRUE);
         
             $scope = 'SCOPE_FILE_DOWNLOAD';
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "username=zdenek.habala@ais.cz&password=lf191174&grant_type=password&scope=".$scope);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&password=$y&grant_type=password&scope=".$scope);
         
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             "Content-Type: application/x-www-form-urlencoded",
@@ -246,7 +248,7 @@
 
     curl_setopt($ch, CURLOPT_POST, TRUE);
 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=zdenek.habala@ais.cz&password=lf191174&grant_type=password&scope=".$scope);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&password=$y&grant_type=password&scope=".$scope);
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
       "Content-Type: application/x-www-form-urlencoded",
