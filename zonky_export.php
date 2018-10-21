@@ -46,6 +46,8 @@
     function download_zonky ( $url, $name ) {
 
         global $debug;
+        global $x;
+        global $y;
 
         $ch = curl_init();
 
