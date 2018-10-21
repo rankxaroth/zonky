@@ -398,7 +398,7 @@
 
     curl_setopt($ch, CURLOPT_POST, TRUE);
 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&$y&grant_type=password&scope=SCOPE_APP_WEB");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=$x&password=$y&grant_type=password&scope=SCOPE_APP_WEB");
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         "Content-Type: application/x-www-form-urlencoded",
