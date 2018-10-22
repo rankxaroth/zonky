@@ -16,6 +16,17 @@
     date_default_timezone_set('Europe/Prague');
     setlocale(LC_COLLATE,"cz_CZ.UTF-8");
 
+    set_time_limit(0);
+
+    function generuj_report ( $investor ) {
+        // provede analyzu portfolia dle investora a odešle HTML e-mail na jeho adresu
+        $bobo_vklad = 5000;
+        $emaily = array ( 'Z' => 'zdenek.habala@gmail.com',
+                          'X' => 'zdenek.habala@gmail.com',
+                          'B' => 'bohdankacicalkova@seznam.cz');
+
+    }
+
     function refresh_token ( $refresh_token ) {
 
         global $scope;
@@ -188,7 +199,6 @@
                 $pos_end = strpos($location,'?');
                 $filename = substr($location, $pos_start, $pos_end - $pos_start);
 
-                set_time_limit(0);
                 //This is the file where we save the information
                 $fp = fopen (dirname(__FILE__) . '/Soubory/'.$filename, 'w+');
                 //Here is the file we are downloading, replace spaces with %20
