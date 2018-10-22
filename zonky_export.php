@@ -134,6 +134,7 @@
             } 
             $http_code = curl_getinfo ($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
+            flush();
         }
 
         flush();
@@ -216,6 +217,7 @@
                     var_dump($response); echo '<HR>';
                     var_dump(curl_getinfo ($ch)); echo '<HR>';
                 }
+                flush();
                 curl_close($ch);
                 fclose($fp);
 
@@ -242,6 +244,7 @@
                     var_dump($response); echo '<HR>';
                     var_dump(curl_getinfo ($ch)); echo '<HR>';
                 }
+                flush();
                 $http_code = curl_getinfo ($ch, CURLINFO_HTTP_CODE);
                 curl_close($ch);
 
