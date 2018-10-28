@@ -31,6 +31,7 @@
         $fileName = 'Soubory/BoBo'.hash('ripemd160',time().mt_rand(10,1000)).'.txt';
 
         echo $fileName;
+        flush();
 
         $f = fopen( $fileName,'w');
         fwrite($f, serialize($pole_pujcek));
