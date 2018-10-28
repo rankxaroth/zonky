@@ -16,6 +16,18 @@
     date_default_timezone_set('Europe/Prague');
     setlocale(LC_COLLATE,"cz_CZ.UTF-8");
 
+    set_time_limit(0);
+    ignore_user_abort(true);
+
+    function generuj_report ( $investor ) {
+        // provede analyzu portfolia dle investora a odešle HTML e-mail na jeho adresu
+        $bobo_vklad = 5000;
+        $emaily = array ( 'Z' => 'zdenek.habala@gmail.com',
+                          'X' => 'zdenek.habala@gmail.com',
+                          'B' => 'bohdankacicalkova@seznam.cz');
+
+    }
+
     function refresh_token ( $refresh_token ) {
 
         global $scope;
@@ -91,7 +103,7 @@
         
         $response = curl_exec($ch);
 
-        echo '<HR>2. POST export<HR>';
+        echo '<HR>2. POST export<HR>'.str_repeat(' ',50);
         if ( $debug ) {
             var_dump($response); echo '<HR>';
             var_dump(curl_getinfo ($ch)); echo '<HR>';
@@ -116,13 +128,14 @@
 
             $response = curl_exec($ch);
 
-            echo '<HR>3. GET export - returning<HR>';
+            echo '<HR>3. GET export - returning<HR>'.str_repeat(' ',50);
             if ( $debug ) {
                 var_dump($response); echo '<HR>';
                 var_dump(curl_getinfo ($ch)); echo '<HR>';
             } 
             $http_code = curl_getinfo ($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
+            flush();
         }
 
         flush();
@@ -145,7 +158,7 @@
         
             $response = curl_exec($ch);
         
-            echo '<HR>4. Token na file download<HR>';
+            echo '<HR>4. Token na file download<HR>'.str_repeat(' ',50);
             if ( $debug ) {
                 var_dump($response);
                 var_dump(curl_getinfo ($ch)); echo '<HR>';
@@ -168,7 +181,7 @@
 
             $response = curl_exec($ch);
 
-            echo '<HR>5. GET export - data<HR>';
+            echo '<HR>5. GET export - data<HR>'.str_repeat(' ',50);
             if ( $debug ) {
                 var_dump($response); echo '<HR>';
                 var_dump(curl_getinfo ($ch)); echo '<HR>';
@@ -188,7 +201,6 @@
                 $pos_end = strpos($location,'?');
                 $filename = substr($location, $pos_start, $pos_end - $pos_start);
 
-                set_time_limit(0);
                 //This is the file where we save the information
                 $fp = fopen (dirname(__FILE__) . '/Soubory/'.$filename, 'w+');
                 //Here is the file we are downloading, replace spaces with %20
@@ -200,12 +212,13 @@
                 // get curl response
                 curl_exec($ch); 
 
-                echo '<HR>6. GET export - data<HR>';
+                echo '<HR>6. GET export - data<HR>'.str_repeat(' ',50);
                 echo 'filename='.$filename.'<BR>';
                 if ( $debug ) {
                     var_dump($response); echo '<HR>';
                     var_dump(curl_getinfo ($ch)); echo '<HR>';
                 }
+                flush();
                 curl_close($ch);
                 fclose($fp);
 
@@ -227,11 +240,12 @@
 
                 $response = curl_exec($ch);
 
-                echo '<HR>7. POST zonky_load<HR>';
+                echo '<HR>7. POST zonky_load<HR>'.str_repeat(' ',50);
                 if ( $debug ) {
                     var_dump($response); echo '<HR>';
                     var_dump(curl_getinfo ($ch)); echo '<HR>';
                 }
+                flush();
                 $http_code = curl_getinfo ($ch, CURLINFO_HTTP_CODE);
                 curl_close($ch);
 

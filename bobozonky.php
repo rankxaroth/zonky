@@ -698,6 +698,7 @@
                 '<TD ALIGN="right">'.$row['dalsi_platba'].'</TD>'.
                 '<TD ALIGN="right">'.( $mozna_ztrata == 0 ? '' : number_format($mozna_ztrata,2,'.',' ').' Kč ').'</TD>'.
                 '</TD>';
+           echo "\r\n";
         }
         flush();
 
@@ -748,7 +749,7 @@
     // ------------------------ tabulka na celkové portfolio ---------------------------------
     echo '<TABLE BORDER="1">';
     echo '<TR><TH COLSPAN="10">Ratingová struktura všech investic</TH><TR>';
-    echo '<TR><TH>Rating</TH><TH COLSPAN="2">Počet</TH><TH>Investice</TH><TH>Splaceno</TH><TH>Zůstatek</TH><TH>Oček. úrok</TH><TH>Splac. úrok</TH><TH>Poplatek</TH><TH>Možná ztráta</TH></TR>';
+    echo '<TR><TH WIDTH="100">Rating</TH><TH COLSPAN="2" WIDTH="100">Počet</TH><TH WIDTH="100">Investice</TH><TH WIDTH="100">Splaceno</TH><TH WIDTH="100">Zůstatek</TH><TH WIDTH="100">Oček. úrok</TH><TH WIDTH="100">Splac. úrok</TH><TH WIDTH="100">Poplatek</TH><TH WIDTH="100">Možná ztráta</TH></TR>';
     foreach ( $ratingy as $key => $val ) {
         echo '<TR>'.
             '<TD ALIGN="right">'.$key.'</TD>'.
@@ -762,6 +763,7 @@
             '<TD ALIGN="right">'.number_format($ratingy[$key]['poplatek_zonky'],2,'.',' ').' Kč </TD>'.
             '<TD ALIGN="right">'.number_format($ratingy[$key]['mozna_ztrata'],2,'.',' ').' Kč </TD>'.
             '</TR>';
+           echo "\r\n";
     }
 
     echo '<TR>'.
@@ -782,7 +784,7 @@
     // ------------------------ tabulka na nesplacené portfolio ---------------------------------
     echo '<TABLE BORDER="1">';
     echo '<TR><TH COLSPAN="10">Ratingová struktura nesplacených investic</TH><TR>';
-    echo '<TR><TH>Rating</TH><TH COLSPAN="2">Počet</TH><TH>Investice</TH><TH>Splaceno</TH><TH>Zůstatek</TH><TH>Oček. úrok</TH><TH>Splac. úrok</TH><TH>Poplatek</TH><TH>Možná ztráta</TH></TR>';
+    echo '<TR><TH WIDTH="100">Rating</TH><TH COLSPAN="2" WIDTH="100">Počet</TH><TH WIDTH="100">Investice</TH><TH WIDTH="100">Splaceno</TH><TH WIDTH="100">Zůstatek</TH><TH WIDTH="100">Oček. úrok</TH><TH WIDTH="100">Splac. úrok</TH><TH WIDTH="100">Poplatek</TH><TH WIDTH="100">Možná ztráta</TH></TR>';
     foreach ( $ratingy_active as $key => $val ) {
         echo '<TR>'.
             '<TD ALIGN="right">'.$key.'</TD>'.
@@ -815,7 +817,7 @@
 // ------------------------ tabulka na splacené portfolio ---------------------------------
     echo '<TABLE BORDER="1">';
     echo '<TR><TH COLSPAN="10">Ratingová struktura splacených investic</TH><TR>';
-    echo '<TR><TH>Rating</TH><TH COLSPAN="2">Počet</TH><TH>Investice</TH><TH>Splaceno</TH><TH>Zůstatek</TH><TH>Oček. úrok</TH><TH>Splac. úrok</TH><TH>Poplatek</TH><TH>Možná ztráta</TH></TR>';
+    echo '<TR><TH WIDTH="100">Rating</TH><TH WIDTH="100" COLSPAN="2">Počet</TH><TH WIDTH="100">Investice</TH><TH WIDTH="100">Splaceno</TH><TH WIDTH="100">Zůstatek</TH><TH WIDTH="100">Oček. úrok</TH><TH WIDTH="100">Splac. úrok</TH><TH WIDTH="100">Poplatek</TH><TH WIDTH="100">Možná ztráta</TH></TR>';
     foreach ( $ratingy_active as $key => $val ) {
         echo '<TR>'.
             '<TD ALIGN="right">'.$key.'</TD>'.
